@@ -76,10 +76,30 @@
         }
     </style>
     <title>Document</title>
+    <script type="text/javascript" src="jquery-1.3.2.min.js">
+        $(document).ready(function () {
+            $('#submit').on('click', function () {
+                $.ajax({
+                    url: 'C:\Users\7 gen\Desktop\gitpractice\mongodbProject-master\server.js', // endpoint url
+                    type: 'post', // request type
+                    dataType: '',
+                    contentType: '',
+                    data: $('form#concatForm').serialize(),
+                    success: function (res) {
+                        resolve(res);
+                    },
+                    error: function (err) {
+                        reject(err)
+                    }
+                });
+            });
+        });
+
+    </script>
 </head>
 
 <body>
-    <form action="/insert" method="POST">
+    <form method="POST"  id="conactform">
         <div class="container">
             <h1>New Employees</h1>
             <h2>Submit</h2>
@@ -98,10 +118,10 @@
             <input type="text" placeholder="Enter Your Address" name="address" id="address" required>
 
             <label for="telNo"><b>Mobile Number</b></label>
-            <input type="tel" name="phone_number" id="phone_number" required>
-            
+            <input type="text" name="mobile" pattern="[1-9]{1}[0-9]{9}" title="Enter 10 digit mobile number" placeholder="Mobile number" required>
+
             <label for="birthday">Birthday:</label>
-            <input type="date" id="birthday" name="birthday">
+            <input type="date" id="birthday" name="birthday" required>
             <hr>
             <button type="submit" class="submitbtn">Submit</button>
         </div>
